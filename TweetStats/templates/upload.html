@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+        <div class="inner-container">
+            <!-- Create the side bar-->
+            {% block sidebar %}
+            <div class="sidebar">
+                
+                <div class="icon">
+                    <img src="static/human_icon.png" class="center" width="100" height="100">
+                    {% if session["username"] %}
+                      <p>My id is: <br>
+                       <b>{{ session["username"] }}</b></p>
+                    {% else %}
+                      <p>Unknown ID</p>
+                    {% endif %}
+                      <p>My role is a cataloger</p>
+                </div>         
+                    
+            </div> <!-- End of sidebar-->
+            {% endblock %}   
+
+            {% block content %}
+            <div class="uploadContainer"> <!-- upload form container -->
+               
+                <h1>Upload Twitter Catalog Data</h1>
+
+                <div class="uploader">
+                    <p>Upload CSV file</p>
+                    <form action="{{ url_for('upload') }}" method="POST">
+                        <input type="file" class="uploadBtn" value="Choose File" id="upload" name="filename">
+                        <button type="submit" class="submit">upload</button>
+                    </form>
+                </div>
+                
+            </div> <!-- End of upload form container-->
+            {% endblock %}
+        </div> <!-- End of inner-container-->
+    </div> <!-- End of outer-container -->

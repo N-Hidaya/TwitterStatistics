@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+        {% block content %}
+        <div class="inner-container">
+           
+            <!-- Create entry form for register-->
+            <div class="entry">
+                <div class="tab">
+                    <li class="activetab"><a href="{{ url_for('register') }}">Register</a></li>
+                    <li><a href="{{ url_for('home') }}" >Login</a></li>
+                </div>  
+                <!-- Display error messages-->
+                <div>
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for msg in messages %}
+                                <li class="warning">{{ msg }}</li>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
+                <form action="{{ url_for('register') }}" method="POST">
+                    <div>
+                        <p>Enter your email:</p>
+                        <input type="email" name="email" class="input" required>
+                        <p>Enter your password:</p>
+                        <input type="password" name="password" class="input" required>
+                        <p>Enter your NRIC:</p>
+                        <input type="text" name="nric" class="input" required>
+                    </div>  
+                    <div>
+                        <button type="submit" class="submit">REGISTER</button>
+                    </div>   
+                </form>  
+            </div> <!-- End of entry-->
+
+        </div> <!-- End of inner-container-->
+        {% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+
+        <div class="inner-container">
+
+            {% block sidebar %}
+            <!-- Create the side bar-->
+            <div class="sidebar">
+                <div class="icon">
+                    <img src="static/human_icon.png" class="center" width="100" height="100">
+                    {% if session["username"] %}
+                      <p>My id is: <br>
+                       <b>{{ session["username"] }}</b></p>
+                    {% else %}
+                      <p>Unknown ID</p>
+                    {% endif %}
+                      <p>My role is a cataloger</p>
+
+                      <div class="label_dashboard">
+                        <p>Select Period</p><br>
+                        <select name="yroptions" method="GET" action="/" class="input_dashboard media_input">
+                            {% for yr in yroptions %}
+                                <option value="{{yr}}">{{yr}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>            
+            </div> <!-- End of sidebar-->
+            {% endblock %} 
+            
+            {% block content %}
+            <div class="chart-container">
+                <h1>The Twitter Trending</h1>
+                <div class="chart">
+                    <canvas id="twitterChart" width="400" height="270"></canvas>
+                </div>
+            </div>
+            {% endblock %}
+      
+        </div> <!-- End of inner-container-->
+    </div> <!-- End of outer-container -->
+
+
+{% block dashboardJS %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../static/dashboard.js"></script>   
+{% endblock %}

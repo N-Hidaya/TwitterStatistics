@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Cataloging System</title>
+    <link rel="stylesheet" href="../static/style.css"/>
+</head>
+<body>
+    <div class="outer-container">
+        <!--Create the Header Bar-->
+        <div class="header-bar">
+            <nav class="nav">
+                <div class="logo">
+                  <img src="../static/logo.png" class="center" width="80" height="80">
+                    
+                </div>
+                <h1>Twitter Cataloging System</h1>
+                
+                <div class="nav-items">
+                    <ul>
+                      <li><a href="{{ url_for('register') }}">Register</a></li>
+                      <li><a href="{{ url_for('home') }}">Login</a></li>
+                      <li><a href="{{ url_for('catalog') }}">Catalogue</a></li>
+                      <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                      <li><a href="{{ url_for('upload') }}">Upload</a></li>
+                      <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div> <!-- End of Header Bar-->
+
+      
+        
+            <!-- Create the side bar-->
+            {% block sidebar %}
+            <div class="sidebar">
+              
+                <div class="icon">
+                    <img src="static/human_icon.png" class="center" width="100" height="100">
+                    {% if session["username"] %}
+                      <p>My id is: <br>
+                       <b>{{ session["username"] }}</b></p>
+                    {% else %}
+                      <p>Unknown ID</p>
+                    {% endif %}
+                      <p>My role is a cataloger</p>
+                </div>   
+                          
+            </div> <!-- End of sidebar-->
+            {% endblock %} 
+         
+            {% block content %}
+            <div class="catalog-container">
+              
+                <!--Input Form-->
+                <form action="{{ url_for('catalog') }}" method="POST">
+                <div class="form" id="form">
+                    <p class="label_catalog">When</p>
+                    <input name="when" type="date" class="input_catalog when_input">
+                    <p class="label_catalog">Who</p>
+                    <textarea name="who" type="text" class="textarea_catalog who_input"></textarea>
+                    <p class="label_catalog">Comment</p>
+                    <textarea name="comment" type="text" class="textarea_catalog comment_input" rows="3"></textarea>
+                    <p class="label_catalog">About</p>
+                    <textarea name="about" type="text" class="textarea_catalog about_input"></textarea>
+                    <p class="label_catalog">Media</p>
+                    <select name="media" class="input_catalog media_input">
+                        <option value="0">*Please Select*</option>
+                        <option value="Instagram">Instagram</option>
+                        <option value="Pictures">Pictures</option>
+                        <option value="Videos">Videos</option>
+                        <option value="Text">Text</option>
+                    </select>
+                    <p class="label_catalog">What (hashtag)</p>
+                    <textarea name="what" type="text" class="textarea_catalog what_input"></textarea>
+                    <p class="label_catalog">Whom (user_mentions)</p>
+                    <textarea name="whom" type="text" class="textarea_catalog whom_input"></textarea>
+                    <p class="label_catalog">Reference ID</p>
+                    <textarea name="refID" type="text" class="textarea_catalog refID_input"></textarea>
+
+                    <div class="button_catalog">
+                    <button type="submit" class="submit_catalog" id="submit">SUBMIT</button>
+                    </div>
+                </div>
+                </form>
+
+                <!--Output-->
+                <div id="output_table">
+                    <h1>The following record has been entered</h1>
+                    <div class="table_style">
+                      <table>
+                        <tr>
+                            <th>Attribute</th>
+                            <th>Value</th>
+                          </tr>
+                          <tr>
+                           
+                            <td>When</td>
+                            <td class="output_when"></td>
+                          </tr>
+                          <tr>
+                            <td>Who</td>
+                            <td class="output_who"></td>
+                          </tr>
+                          <tr>
+                            <td>Comment</td>
+                            <td class="output_comment"></td>
+                          </tr>
+                          <tr>
+                            <td>About</td>
+                            <td class="output_about"></td>
+                          </tr>
+                          <tr>
+                            <td>Media</td>
+                            <td class="output_media"></td>
+                          </tr>
+                          <tr>
+                            <td>What</td>
+                            <td class="output_what"></td>
+                          </tr>
+                          <tr>
+                            <td>Whom</td>
+                            <td class="output_whom"></td>
+                          </tr>
+                          <tr>
+                            <td>Reference <br>ID</td>
+                            <td class="output_refID"></td>
+                          </tr>
+                      
+                    </table>
+                    </div>
+
+                </div>
+              
+        
+            </div> <!-- End of container-->
+            {% endblock %}
+       <!-- End of inner-container-->
+    </div> <!-- End of outer-container -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="static/catalog.js"></script>
+
+</body>
+</html>

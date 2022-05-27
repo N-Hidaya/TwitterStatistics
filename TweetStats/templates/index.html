@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+        {% block content %}
+        <div class="inner-container">
+            
+            <!-- Create entry form for register-->
+            <div class="entry">
+                <div class="tab">
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+                    <li class="activetab"><a href="{{ url_for('home') }}">Login</a></li>
+                </div>     
+              
+                <form action="{{ url_for('home') }}" method="POST">
+                <div>
+                    <p class="email_label">Enter your email:</p> 
+                    <input name="email" type="email" class="input" >
+                   
+                    <p class="password_label">Enter your password:</p>
+                    <input name="password" type="password" class="input" >
+                </div>  
+                <div>
+                    <button type="submit" class="submit">LOGIN</button>
+                </div>
+                </form>
+            </div> <!-- End of entry-->
+
+        </div> <!-- End of inner-container-->
+        {% endblock %}

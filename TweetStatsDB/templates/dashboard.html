@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+
+        <div class="inner-container">
+            <!-- Create the side bar-->
+            <div class="sidebar">
+                {% block sidebar %}
+                <div class="icon">
+                    <img src="static/human_icon.png" class="center" width="100" height="100">
+                    {% if session["username"] %}
+                      <p>My id is: <br>
+                       <b>{{ session["username"] }}</b></p>
+                    {% else %}
+                      <p>Unknown ID</p>
+                    {% endif %}
+                      <p>My role is a cataloger</p>
+
+                      <div class="label_dashboard">
+                        <p>Select Period</p><br>
+                        <select name="media" class="input_dashboard media_input">
+                            <option value="All">All</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                        </select>
+                    </div>
+                </div>            
+                
+                {% endblock %}    
+            </div> <!-- End of sidebar-->
+
+            <div class="chart-container">
+                {% block content %}
+                <h1>The Twitter Trending</h1>
+                <div class="chart">
+                    <canvas id="twitterChart" width="400" height="400"></canvas>
+                </div>
+                {% endblock %}
+            </div>
+      
+        </div> <!-- End of inner-container-->
+    </div> <!-- End of outer-container -->
+{% block dashboardJS %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../static/dashboard.js"></script>   
+{% endblock %}

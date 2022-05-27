@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Cataloging System</title>
+</head>
+<body>
+    <div class="label_dashboard">
+        <p>Select Period</p><br>
+        <select name="yroptions" method="GET" action="/" class="input_dashboard media_input">
+            {% for yr in yroptions %}
+                <option value="{{yr}}">{{yr}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <canvas id="test"></canvas>
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../static/test.js"></script>   
+
+</body>
+    
+</html>
